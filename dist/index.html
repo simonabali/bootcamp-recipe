@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,37 @@
     <title>Recipe Finder - Exam1</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-    <div id= "searchArea">
+    <div id="searchArea">
         <div>Make a search</div>
-        <input type="text" placeholder= "Search for an ingredient"> </input>
-        <button id=search>Search!</button>
-</div>
-<div id=resultsArea></div>
-        <script id= "recipe-template" type="text/x-handlebars-template" >
-       <div>{{#each recipe}}
-           <div id=recipe>{{}}</div>
+        <input id="input" type="text" placeholder="Search for an ingredient"> </input>
+        <button>Search!</button>
+    </div>
+    <div id=resultsArea></div>
+
+
+    <script id="recipe-template" type="text/x-handlebars-template">
+       <div>{{#each data}}
+           <div id=recipe>
+               <div>
+                <a href="{{href}}">{{title}}</a>   
+               </div>
+               <div>
+                   <img src="{{thumbnail}}">
+            </div>
+               <div><ul>
+                   {{#each ingredients}}
+                   <li>{{this}}</li>
+                   {{/each}}
+               </ul></div>
+            </div>
+            {{/each}}
        </div>
         </script>
-
-
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/handlebars/dist/handlebars.js"></script>
-    <script src= "main.js"> </script> 
+    <script src="main.js"> </script>
 </body>
+
 </html>

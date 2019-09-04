@@ -25,18 +25,20 @@ app.get("/recipes/:ingredient", function (req, response) {
         //You'll receive an object that looks like { result: [RECIPES] }
         //receives a string that needs to be parsed
         let data = JSON.parse(body)
+        //console.log(data)
 
-        let relevantRecipes = data.results.map(r => {
-            return {
-                r: {
+        let relevantRecipes = data.results.map(r => {return {
                     title: r.title,
                     ingredients: r.ingredients,
-                    image: r.href
+                    href: r.href,
+                    thumbnail: r.thumbnail
                 }
-            }
+            
         })
         // why is the response.send here? inside the request and not outside it?
+        console.log(relevantRecipes)
         response.send(relevantRecipes)
+        
     })
 
 })

@@ -1,14 +1,21 @@
-$("#search").on("click", input, function(){
-    let searchedTerm = $("input").val()
-    $.get(`/${searchedTerm}`, function(result){
-//not finished
-    })
-})
 
-
-let handlebarManager= function () {
-const source = $('#recipe-template').html();
-const template = Handlebars.compile(source);
-let newHTML = template({//not finished})
-$('#resultsArea').append(newHTML);  
+//handlebar manager or render
+let handlebarManager = function (data) {
+    const source = $('#recipe-template').html();
+    const template = Handlebars.compile(source);
+    let newHTML = template({ data })
+    $('#resultsArea').append(newHTML)
 }
+
+//function invoked when button clicked
+const getRecipes = function () {  
+    let food = $("#input").val()
+    $.get(`/recipes/${food}`, function (data) {
+        handlebarManager(data)
+    })
+}
+
+//button clicked
+$("button").on("click", function () {
+    getRecipes($("#input").val())
+})
